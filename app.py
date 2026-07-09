@@ -1,4 +1,4 @@
-import streamlit as st
+quoteimport streamlit as st
 import urllib.parse
 import re
 
@@ -538,33 +538,33 @@ Analizzeremo la tua richiesta nel più breve tempo possibile."""
         "request_type": "bug",
         "priority": "High",
         "tags": [
-            "stealth", "export", "material quote", "style code", "cannot export",
-            "material quote export", "style code export", "error", "blocked",
+            "stealth", "export", "material quote", "style quote", "cannot export",
+            "material quote export", "style quote export", "error", "blocked",
             "erreur", "errore"
         ],
         "title": {
-            "en": "Cannot export a material quote or style code to Stealth",
-            "fr": "Impossible d’exporter un Material Quote ou un Style Code vers Stealth",
-            "it": "Impossibile esportare un Material Quote o uno Style Code verso Stealth"
+            "en": "Cannot export a material quote or style quote to Stealth",
+            "fr": "Impossible d’exporter un Material Quote ou un style quote vers Stealth",
+            "it": "Impossibile esportare un Material Quote o uno style quote verso Stealth"
         },
         "quick_topic": {
-            "en": "I cannot export a material quote or style code to Stealth",
-            "fr": "Je ne peux pas exporter un Material Quote ou un Style Code vers Stealth",
-            "it": "Non riesco a esportare un Material Quote o uno Style Code verso Stealth"
+            "en": "I cannot export a material quote or style quote to Stealth",
+            "fr": "Je ne peux pas exporter un Material Quote ou un style quote vers Stealth",
+            "it": "Non riesco a esportare un Material Quote o uno style quote verso Stealth"
         },
         "content": {
             "en": """Please provide:
-- the link to the concerned material quote or style code;
+- the link to the concerned material quote or style quote;
 - a screenshot showing the export issue or error message.
 
 We will investigate your request as soon as possible.""",
             "fr": """Veuillez fournir :
-- le lien vers le Material Quote ou le Style Code concerné ;
+- le lien vers le Material Quote ou le style quote concerné ;
 - une capture d’écran montrant le problème d’export ou le message d’erreur.
 
 Nous analyserons votre demande dans les plus brefs délais.""",
             "it": """Fornisci:
-- il link al Material Quote o allo Style Code interessato;
+- il link al Material Quote o allo style quote interessato;
 - uno screenshot che mostri il problema di export o il messaggio di errore.
 
 Analizzeremo la tua richiesta nel più breve tempo possibile."""
