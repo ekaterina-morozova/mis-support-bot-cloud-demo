@@ -1,5 +1,6 @@
 import streamlit as st
 import urllib.parse
+import re
 
 
 # ============================================================
@@ -58,7 +59,12 @@ UI_TEXTS = {
         "screenshot_note": "If you contact support, please include the link and/or screenshot.",
         "helpful": "Was this helpful?",
         "support_note": "If not, you can contact MIS Support using the button below.",
-        "email_preview": "Support email preview"
+        "email_preview": "Support email preview",
+        "ticket_metadata": "Suggested ticket metadata",
+        "labels": "Labels",
+        "priority": "Priority",
+        "medium": "Medium",
+        "high": "High"
     },
     "fr": {
         "title": "Assistant MIS Support",
@@ -85,7 +91,12 @@ UI_TEXTS = {
         "screenshot_note": "Si vous contactez le support, veuillez inclure le lien et/ou la capture d’écran.",
         "helpful": "Est-ce que cela vous a aidé ?",
         "support_note": "Si non, vous pouvez contacter MIS Support via le bouton ci-dessous.",
-        "email_preview": "Aperçu de l’email au support"
+        "email_preview": "Aperçu de l’email au support",
+        "ticket_metadata": "Métadonnées suggérées pour le ticket",
+        "labels": "Labels",
+        "priority": "Priorité",
+        "medium": "Medium",
+        "high": "High"
     },
     "it": {
         "title": "Assistente MIS Support",
@@ -112,23 +123,29 @@ UI_TEXTS = {
         "screenshot_note": "Se contatti il supporto, includi il link e/o lo screenshot.",
         "helpful": "È stato utile?",
         "support_note": "In caso contrario, puoi contattare MIS Support tramite il pulsante qui sotto.",
-        "email_preview": "Anteprima email al supporto"
+        "email_preview": "Anteprima email al supporto",
+        "ticket_metadata": "Metadati suggeriti per il ticket",
+        "labels": "Labels",
+        "priority": "Priorità",
+        "medium": "Medium",
+        "high": "High"
     }
 }
 
 
 # ============================================================
 # DEMO KNOWLEDGE BASE
-# One instruction = one object with translations
 # ============================================================
 
 INSTRUCTIONS = [
     {
         "id": "plm_create_serie",
         "application": "PLM",
+        "request_type": "service_request",
+        "priority": "Medium",
         "tags": [
-            "serie", "series", "shape and serie", "plm", "create",
-            "série", "créer", "creare"
+            "serie", "series", "shape", "shape and serie", "plm", "create",
+            "new serie", "série", "créer", "creare", "nuova serie"
         ],
         "title": {
             "en": "Create a Serie",
@@ -164,9 +181,12 @@ Passo 6. Verificare che la serie sia stata creata correttamente."""
     {
         "id": "plm_create_collection",
         "application": "PLM",
+        "request_type": "service_request",
+        "priority": "Medium",
         "tags": [
             "collection", "plm", "create", "new collection",
-            "créer collection", "collezione", "creare collezione"
+            "collection creation", "créer collection", "nouvelle collection",
+            "collezione", "creare collezione", "nuova collezione"
         ],
         "title": {
             "en": "Create a Collection",
@@ -193,6 +213,8 @@ Una volta ricevuto il nome della collezione, la creeremo entro la giornata."""
     {
         "id": "plm_new_hierarchy",
         "application": "PLM",
+        "request_type": "service_request",
+        "priority": "Medium",
         "tags": [
             "hierarchy", "new hierarchy", "plm", "create",
             "hiérarchie", "nouvelle hiérarchie", "gerarchia", "nuova gerarchia"
@@ -222,9 +244,12 @@ Una volta ricevuta la gerarchia validata, la creeremo entro la giornata."""
     {
         "id": "plm_add_value_column",
         "application": "PLM",
+        "request_type": "service_request",
+        "priority": "Medium",
         "tags": [
-            "column", "value", "add value", "plm",
-            "colonne", "valeur", "ajouter valeur", "colonna", "valore"
+            "column", "value", "add value", "new value", "plm",
+            "colonne", "valeur", "ajouter valeur", "nouvelle valeur",
+            "colonna", "valore", "nuovo valore"
         ],
         "title": {
             "en": "Add a New Value to a Column",
@@ -263,8 +288,10 @@ Creeremo il nuovo valore entro 1–2 giorni."""
     {
         "id": "plm_delete_color",
         "application": "PLM",
+        "request_type": "service_request",
+        "priority": "Medium",
         "tags": [
-            "color", "delete color", "plm",
+            "color", "delete color", "remove color", "plm",
             "couleur", "supprimer couleur", "colore", "eliminare colore"
         ],
         "title": {
@@ -292,9 +319,13 @@ Una volta ricevute le informazioni necessarie, lo elimineremo entro la giornata.
     {
         "id": "businessmap_collection_not_visible",
         "application": "BusinessMap",
+        "request_type": "bug",
+        "priority": "High",
         "tags": [
-            "collection", "not visible", "businessmap", "export", "business export",
-            "collection non visible", "collezione non visibile"
+            "collection", "not visible", "cannot see", "missing collection",
+            "businessmap", "business map", "export", "business export",
+            "collection non visible", "je ne vois pas", "collezione non visibile",
+            "non vedo"
         ],
         "title": {
             "en": "Collection not visible in BusinessMap",
@@ -333,9 +364,12 @@ Analizzeremo la tua richiesta nel più breve tempo possibile."""
     {
         "id": "businessmap_style_not_visible",
         "application": "BusinessMap",
+        "request_type": "bug",
+        "priority": "High",
         "tags": [
-            "style", "not visible", "businessmap", "export",
-            "style non visible", "stile non visibile"
+            "style", "not visible", "cannot see", "missing style",
+            "businessmap", "business map", "export",
+            "style non visible", "stile non visibile", "je ne vois pas", "non vedo"
         ],
         "title": {
             "en": "Style not visible in BusinessMap",
@@ -374,9 +408,12 @@ Analizzeremo la tua richiesta nel più breve tempo possibile."""
     {
         "id": "businessmap_export_issue",
         "application": "BusinessMap",
+        "request_type": "bug",
+        "priority": "High",
         "tags": [
-            "export", "businessmap", "business export", "issue",
-            "problème export", "problema export"
+            "export", "businessmap", "business map", "business export", "issue",
+            "problem", "error", "blocked", "cannot export",
+            "problème export", "erreur", "bloqué", "problema export", "errore"
         ],
         "title": {
             "en": "BusinessMap Export Issue",
@@ -415,9 +452,13 @@ Analizzeremo la tua richiesta nel più breve tempo possibile."""
     {
         "id": "balchain_access",
         "application": "BalChain",
+        "request_type": "bug",
+        "priority": "High",
         "tags": [
-            "balchain", "access", "login", "blank screen", "account", "supplier",
-            "connexion", "accès", "fournisseur", "accesso", "schermata bianca", "fornitore"
+            "balchain", "access", "login", "log in", "cannot login", "cannot log in",
+            "blank screen", "account", "supplier", "password", "button",
+            "connexion", "accès", "fournisseur", "mot de passe",
+            "accesso", "schermata bianca", "fornitore", "password"
         ],
         "title": {
             "en": "BalChain Login or Access Issue",
@@ -456,9 +497,12 @@ Passo 5. Se il problema persiste, contatta MIS Support tramite questo modulo e f
     {
         "id": "stealth_style_export",
         "application": "Stealth",
+        "request_type": "bug",
+        "priority": "High",
         "tags": [
             "stealth", "export", "style", "not exported", "cannot export style",
-            "style non exporté", "stile non esportato"
+            "error", "blocked", "style non exporté", "stile non esportato",
+            "erreur", "errore"
         ],
         "title": {
             "en": "Cannot export a style to Stealth",
@@ -491,9 +535,12 @@ Analizzeremo la tua richiesta nel più breve tempo possibile."""
     {
         "id": "stealth_material_quote_style_code_export",
         "application": "Stealth",
+        "request_type": "bug",
+        "priority": "High",
         "tags": [
             "stealth", "export", "material quote", "style code", "cannot export",
-            "material quote export", "style code export"
+            "material quote export", "style code export", "error", "blocked",
+            "erreur", "errore"
         ],
         "title": {
             "en": "Cannot export a material quote or style code to Stealth",
@@ -546,8 +593,37 @@ def reset_form():
     st.session_state.link = ""
 
 
+def normalize_text(text: str) -> str:
+    text = text.lower()
+    text = text.replace("business map", "businessmap")
+    text = text.replace("log in", "login")
+    text = re.sub(r"[^a-zA-ZÀ-ÿ0-9]+", " ", text)
+    return text.strip()
+
+
+def tokenize(text: str):
+    stop_words = {
+        "the", "and", "for", "with", "this", "that", "from", "into", "onto",
+        "can", "cannot", "cant", "can't", "could", "would", "should", "please",
+        "how", "what", "where", "when", "why", "issue", "problem", "problems",
+        "je", "j", "ne", "pas", "un", "une", "le", "la", "les", "des", "de",
+        "du", "dans", "sur", "pour", "avec", "comment", "veuillez",
+        "non", "un", "una", "il", "lo", "la", "gli", "le", "di", "da",
+        "per", "con", "come", "posso", "riesco"
+    }
+
+    normalized = normalize_text(text)
+    words = normalized.split()
+
+    return [
+        word
+        for word in words
+        if len(word) > 2 and word not in stop_words
+    ]
+
+
 def find_instruction(question: str, application: str):
-    question = question.lower()
+    question_tokens = tokenize(question)
     best_item = None
     best_score = 0
 
@@ -556,6 +632,7 @@ def find_instruction(question: str, application: str):
             continue
 
         searchable_text = " ".join([
+            item["id"],
             item["title"]["en"],
             item["title"]["fr"],
             item["title"]["it"],
@@ -563,13 +640,22 @@ def find_instruction(question: str, application: str):
             item["quick_topic"]["fr"],
             item["quick_topic"]["it"],
             " ".join(item["tags"]),
-        ]).lower()
+        ])
 
-        score = sum(
-            1
-            for word in question.split()
-            if len(word) > 2 and word in searchable_text
-        )
+        searchable_normalized = normalize_text(searchable_text)
+        searchable_tokens = tokenize(searchable_text)
+
+        score = 0
+
+        for token in question_tokens:
+            if token in searchable_tokens:
+                score += 3
+            elif token in searchable_normalized:
+                score += 1
+
+        for tag in item["tags"]:
+            if normalize_text(tag) in normalize_text(question):
+                score += 4
 
         if score > best_score:
             best_score = score
@@ -578,7 +664,32 @@ def find_instruction(question: str, application: str):
     return best_item if best_score > 0 else None
 
 
-def build_mailto(language, application, issue, link, instruction, uploaded_file):
+def suggest_labels(application: str):
+    return ["L1", application]
+
+
+def suggest_priority(issue: str, instruction):
+    if instruction and instruction.get("priority"):
+        return instruction["priority"]
+
+    high_priority_keywords = [
+        "bug", "error", "blocked", "cannot work", "not working",
+        "cannot login", "cannot log in", "access issue", "export issue",
+        "not visible", "missing", "blank screen",
+        "erreur", "bloqué", "ne fonctionne pas", "impossible",
+        "errore", "bloccato", "non funziona"
+    ]
+
+    issue_normalized = normalize_text(issue)
+
+    for keyword in high_priority_keywords:
+        if normalize_text(keyword) in issue_normalized:
+            return "High"
+
+    return "Medium"
+
+
+def build_mailto(language, application, issue, link, instruction, uploaded_file, labels, priority):
     instruction_title = (
         instruction["title"][language]
         if instruction
@@ -588,6 +699,8 @@ def build_mailto(language, application, issue, link, instruction, uploaded_file)
     subject = f"MIS Support Request - {application}"
 
     link_text = link if link.strip() else "No link provided"
+    labels_text = ", ".join(labels)
+
     screenshot_text = (
         "A screenshot is available and can be attached to the request."
         if uploaded_file is not None
@@ -595,6 +708,7 @@ def build_mailto(language, application, issue, link, instruction, uploaded_file)
     )
 
     if language == "fr":
+        link_text = link if link.strip() else "Aucun lien fourni"
         screenshot_text = (
             "Une capture d’écran est disponible et peut être ajoutée à la demande."
             if uploaded_file is not None
@@ -617,10 +731,16 @@ Capture d'écran :
 Instruction proposée par l'assistant :
 {instruction_title}
 
+Métadonnées suggérées :
+Application : {application}
+Labels : {labels_text}
+Priority : {priority}
+
 Pouvez-vous m'aider, s'il vous plaît ?
 
 Merci d'avance."""
     elif language == "it":
+        link_text = link if link.strip() else "Nessun link fornito"
         screenshot_text = (
             "Uno screenshot è disponibile e può essere allegato alla richiesta."
             if uploaded_file is not None
@@ -643,6 +763,11 @@ Screenshot:
 Istruzione proposta dall'assistente:
 {instruction_title}
 
+Metadati suggeriti:
+Applicazione: {application}
+Labels: {labels_text}
+Priority: {priority}
+
 Potreste aiutarmi, per favore?
 
 Grazie in anticipo."""
@@ -662,6 +787,11 @@ Screenshot:
 
 Instruction suggested by the assistant:
 {instruction_title}
+
+Suggested ticket metadata:
+Application: {application}
+Labels: {labels_text}
+Priority: {priority}
 
 Could you please help with this issue?
 
@@ -776,6 +906,8 @@ if submitted:
         st.stop()
 
     instruction = find_instruction(issue, application)
+    labels = suggest_labels(application)
+    priority = suggest_priority(issue, instruction)
 
     st.divider()
     st.subheader(texts["answer_title"])
@@ -786,6 +918,19 @@ if submitted:
         st.text(instruction["content"][language])
     else:
         st.warning(texts["no_match"])
+
+    st.subheader(texts["ticket_metadata"])
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(f"**{texts['labels']}:** {', '.join(labels)}")
+
+    with col2:
+        if priority == "High":
+            st.error(f"**{texts['priority']}:** {texts['high']}")
+        else:
+            st.info(f"**{texts['priority']}:** {texts['medium']}")
 
     if link.strip():
         st.markdown(f"**{texts['provided_link']}:** {link}")
@@ -808,6 +953,8 @@ if submitted:
         link=link,
         instruction=instruction,
         uploaded_file=uploaded_file,
+        labels=labels,
+        priority=priority,
     )
 
     render_mailto_button(mailto_link, texts["contact"])
@@ -821,6 +968,9 @@ if submitted:
 
         st.write(f"To: {SUPPORT_EMAIL}")
         st.write(f"Subject: MIS Support Request - {application}")
+        st.write("Application:", application)
+        st.write("Labels:", ", ".join(labels))
+        st.write("Priority:", priority)
         st.write("Instruction:", instruction_title)
         st.write("Issue:", issue)
         st.write("Link:", link if link.strip() else texts["no_link"])
