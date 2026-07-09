@@ -42,19 +42,20 @@ UI_TEXTS = {
         "issue": "Describe your issue",
         "link": "Link to the concerned page / object",
         "link_help": "Please paste the link to the concerned style, collection, supplier, order, request, or page.",
-        "screenshot": "A screenshot is available and can be attached if needed",
-        "upload": "Optional: upload a screenshot for the demo",
+        "upload": "Upload a screenshot if no link is available",
         "submit": "Submit",
         "reset": "Reset",
         "answer_title": "Assistant answer",
         "matched_instruction": "Matched instruction",
         "no_match": "I could not find a matching instruction for this issue.",
         "missing_issue": "Please describe your issue or select a quick topic.",
-        "missing_link": "Please add the concerned link.",
-        "missing_screenshot": "Please confirm that a screenshot is available.",
+        "missing_link_or_screenshot": "Please add a concerned link or upload a screenshot.",
         "contact": "Contact MIS Support",
         "provided_link": "Provided link",
-        "screenshot_note": "Please also attach a screenshot if you contact support.",
+        "no_link": "No link provided",
+        "screenshot_uploaded": "Screenshot uploaded",
+        "screenshot_not_uploaded": "No screenshot uploaded",
+        "screenshot_note": "If you contact support, please include the link and/or screenshot.",
         "helpful": "Was this helpful?",
         "support_note": "If not, you can contact MIS Support using the button below.",
         "email_preview": "Support email preview"
@@ -68,19 +69,20 @@ UI_TEXTS = {
         "issue": "Décrivez votre problème",
         "link": "Lien vers la page / l’objet concerné",
         "link_help": "Veuillez coller le lien vers le style, la collection, le fournisseur, la commande, la demande ou la page concernée.",
-        "screenshot": "Une capture d’écran est disponible et peut être ajoutée si nécessaire",
-        "upload": "Optionnel : ajouter une capture d’écran pour la démo",
+        "upload": "Ajoutez une capture d’écran si aucun lien n’est disponible",
         "submit": "Envoyer",
         "reset": "Réinitialiser",
         "answer_title": "Réponse de l’assistant",
         "matched_instruction": "Instruction trouvée",
         "no_match": "Je n’ai pas trouvé d’instruction correspondant à cette demande.",
         "missing_issue": "Veuillez décrire votre problème ou sélectionner un sujet rapide.",
-        "missing_link": "Veuillez ajouter le lien concerné.",
-        "missing_screenshot": "Veuillez confirmer qu’une capture d’écran est disponible.",
+        "missing_link_or_screenshot": "Veuillez ajouter un lien concerné ou télécharger une capture d’écran.",
         "contact": "Contacter MIS Support",
         "provided_link": "Lien fourni",
-        "screenshot_note": "Merci de joindre également une capture d’écran si vous contactez le support.",
+        "no_link": "Aucun lien fourni",
+        "screenshot_uploaded": "Capture d’écran ajoutée",
+        "screenshot_not_uploaded": "Aucune capture d’écran ajoutée",
+        "screenshot_note": "Si vous contactez le support, veuillez inclure le lien et/ou la capture d’écran.",
         "helpful": "Est-ce que cela vous a aidé ?",
         "support_note": "Si non, vous pouvez contacter MIS Support via le bouton ci-dessous.",
         "email_preview": "Aperçu de l’email au support"
@@ -94,19 +96,20 @@ UI_TEXTS = {
         "issue": "Descrivi il problema",
         "link": "Link alla pagina / all’oggetto interessato",
         "link_help": "Incolla il link allo stile, alla collezione, al fornitore, all’ordine, alla richiesta o alla pagina interessata.",
-        "screenshot": "Uno screenshot è disponibile e può essere allegato se necessario",
-        "upload": "Opzionale: carica uno screenshot per la demo",
+        "upload": "Carica uno screenshot se non è disponibile un link",
         "submit": "Invia",
         "reset": "Reset",
         "answer_title": "Risposta dell’assistente",
         "matched_instruction": "Istruzione trovata",
         "no_match": "Non ho trovato un’istruzione corrispondente a questa richiesta.",
         "missing_issue": "Descrivi il problema o seleziona un argomento rapido.",
-        "missing_link": "Aggiungi il link interessato.",
-        "missing_screenshot": "Conferma che uno screenshot è disponibile.",
+        "missing_link_or_screenshot": "Aggiungi un link interessato oppure carica uno screenshot.",
         "contact": "Contatta MIS Support",
         "provided_link": "Link fornito",
-        "screenshot_note": "Allega anche uno screenshot se contatti il supporto.",
+        "no_link": "Nessun link fornito",
+        "screenshot_uploaded": "Screenshot caricato",
+        "screenshot_not_uploaded": "Nessuno screenshot caricato",
+        "screenshot_note": "Se contatti il supporto, includi il link e/o lo screenshot.",
         "helpful": "È stato utile?",
         "support_note": "In caso contrario, puoi contattare MIS Support tramite il pulsante qui sotto.",
         "email_preview": "Anteprima email al supporto"
@@ -123,7 +126,10 @@ INSTRUCTIONS = [
     {
         "id": "plm_create_serie",
         "application": "PLM",
-        "tags": ["serie", "series", "shape and serie", "plm", "create", "série", "créer", "creare"],
+        "tags": [
+            "serie", "series", "shape and serie", "plm", "create",
+            "série", "créer", "creare"
+        ],
         "title": {
             "en": "Create a Serie",
             "fr": "Créer une série",
@@ -158,7 +164,10 @@ Passo 6. Verificare che la serie sia stata creata correttamente."""
     {
         "id": "plm_create_collection",
         "application": "PLM",
-        "tags": ["collection", "plm", "create", "new collection", "créer", "collezione", "creare"],
+        "tags": [
+            "collection", "plm", "create", "new collection",
+            "créer collection", "collezione", "creare collezione"
+        ],
         "title": {
             "en": "Create a Collection",
             "fr": "Créer une collection",
@@ -170,27 +179,24 @@ Passo 6. Verificare che la serie sia stata creata correttamente."""
             "it": "Come posso creare una collezione?"
         },
         "content": {
-            "en": """Step 1. Open the Collection section in PLM.
-Step 2. Click New Collection.
-Step 3. Fill in the required fields.
-Step 4. Save the collection.
-Step 5. Check that the collection has been created correctly.""",
-            "fr": """Étape 1. Ouvrir la section Collection dans PLM.
-Étape 2. Cliquer sur New Collection.
-Étape 3. Renseigner les champs obligatoires.
-Étape 4. Enregistrer la collection.
-Étape 5. Vérifier que la collection a bien été créée.""",
-            "it": """Passo 1. Aprire la sezione Collection in PLM.
-Passo 2. Cliccare su New Collection.
-Passo 3. Compilare i campi obbligatori.
-Passo 4. Salvare la collezione.
-Passo 5. Verificare che la collezione sia stata creata correttamente."""
+            "en": """Please indicate the name of the new collection you would like to create using this form.
+
+Once we receive the collection name, we will create it within the day.""",
+            "fr": """Veuillez indiquer le nom de la nouvelle collection que vous souhaitez créer via ce formulaire.
+
+Une fois le nom de la collection reçu, nous la créerons dans la journée.""",
+            "it": """Indica il nome della nuova collezione che desideri creare tramite questo modulo.
+
+Una volta ricevuto il nome della collezione, la creeremo entro la giornata."""
         }
     },
     {
         "id": "plm_new_hierarchy",
         "application": "PLM",
-        "tags": ["hierarchy", "new hierarchy", "plm", "create", "hiérarchie", "gerarchia"],
+        "tags": [
+            "hierarchy", "new hierarchy", "plm", "create",
+            "hiérarchie", "nouvelle hiérarchie", "gerarchia", "nuova gerarchia"
+        ],
         "title": {
             "en": "Create a New Hierarchy",
             "fr": "Créer une nouvelle hiérarchie",
@@ -202,27 +208,24 @@ Passo 5. Verificare che la collezione sia stata creata correttamente."""
             "it": "Come posso creare una nuova gerarchia?"
         },
         "content": {
-            "en": """Step 1. Open the hierarchy management section.
-Step 2. Select the relevant category.
-Step 3. Add the new hierarchy value.
-Step 4. Save your changes.
-Step 5. Check that the new value is available in PLM.""",
-            "fr": """Étape 1. Ouvrir la section de gestion des hiérarchies.
-Étape 2. Sélectionner la catégorie concernée.
-Étape 3. Ajouter la nouvelle valeur de hiérarchie.
-Étape 4. Enregistrer les modifications.
-Étape 5. Vérifier que la nouvelle valeur est disponible dans PLM.""",
-            "it": """Passo 1. Aprire la sezione di gestione delle gerarchie.
-Passo 2. Selezionare la categoria interessata.
-Passo 3. Aggiungere il nuovo valore di gerarchia.
-Passo 4. Salvare le modifiche.
-Passo 5. Verificare che il nuovo valore sia disponibile in PLM."""
+            "en": """Please send us the validated hierarchy that needs to be created.
+
+Once we receive the validated hierarchy, we will create it within the day.""",
+            "fr": """Veuillez nous envoyer la hiérarchie validée qui doit être créée.
+
+Une fois la hiérarchie validée reçue, nous la créerons dans la journée.""",
+            "it": """Inviaci la gerarchia validata che deve essere creata.
+
+Una volta ricevuta la gerarchia validata, la creeremo entro la giornata."""
         }
     },
     {
         "id": "plm_add_value_column",
         "application": "PLM",
-        "tags": ["column", "value", "add value", "plm", "colonne", "valeur", "colonna", "valore"],
+        "tags": [
+            "column", "value", "add value", "plm",
+            "colonne", "valeur", "ajouter valeur", "colonna", "valore"
+        ],
         "title": {
             "en": "Add a New Value to a Column",
             "fr": "Ajouter une nouvelle valeur dans une colonne",
@@ -234,27 +237,36 @@ Passo 5. Verificare che il nuovo valore sia disponibile in PLM."""
             "it": "Come posso aggiungere un nuovo valore a una colonna?"
         },
         "content": {
-            "en": """Step 1. Identify the column where the new value is needed.
-Step 2. Check whether the value already exists.
-Step 3. Add the new value in the relevant configuration table.
-Step 4. Save the update.
-Step 5. Ask the user to refresh PLM and check again.""",
-            "fr": """Étape 1. Identifier la colonne dans laquelle la nouvelle valeur est nécessaire.
-Étape 2. Vérifier que la valeur n’existe pas déjà.
-Étape 3. Ajouter la nouvelle valeur dans la table de configuration concernée.
-Étape 4. Enregistrer la mise à jour.
-Étape 5. Demander à l’utilisateur de rafraîchir PLM et de vérifier à nouveau.""",
-            "it": """Passo 1. Identificare la colonna in cui è necessario il nuovo valore.
-Passo 2. Verificare che il valore non esista già.
-Passo 3. Aggiungere il nuovo valore nella tabella di configurazione corrispondente.
-Passo 4. Salvare l’aggiornamento.
-Passo 5. Chiedere all’utente di aggiornare PLM e verificare di nuovo."""
+            "en": """Please indicate the value that needs to be created.
+
+Please also provide:
+- a screenshot of the concerned column;
+- the link to the concerned column or object.
+
+We will create the new value within 1–2 days.""",
+            "fr": """Veuillez indiquer la valeur qui doit être créée.
+
+Merci de fournir également :
+- une capture d’écran de la colonne concernée ;
+- le lien vers la colonne ou l’objet concerné.
+
+Nous créerons la nouvelle valeur sous 1 à 2 jours.""",
+            "it": """Indica il valore che deve essere creato.
+
+Fornisci anche:
+- uno screenshot della colonna interessata;
+- il link alla colonna o all’oggetto interessato.
+
+Creeremo il nuovo valore entro 1–2 giorni."""
         }
     },
     {
         "id": "plm_delete_color",
         "application": "PLM",
-        "tags": ["color", "delete color", "plm", "couleur", "supprimer", "colore", "eliminare"],
+        "tags": [
+            "color", "delete color", "plm",
+            "couleur", "supprimer couleur", "colore", "eliminare colore"
+        ],
         "title": {
             "en": "Delete a Color",
             "fr": "Supprimer une couleur",
@@ -266,27 +278,24 @@ Passo 5. Chiedere all’utente di aggiornare PLM e verificare di nuovo."""
             "it": "Come posso eliminare un colore?"
         },
         "content": {
-            "en": """Step 1. Open the concerned style or product.
-Step 2. Go to the color section.
-Step 3. Check that the color is not used in any active flow.
-Step 4. Delete the color if allowed.
-Step 5. Save and ask the user to verify.""",
-            "fr": """Étape 1. Ouvrir le style ou le produit concerné.
-Étape 2. Aller dans la section des couleurs.
-Étape 3. Vérifier que la couleur n’est pas utilisée dans un flux actif.
-Étape 4. Supprimer la couleur si cela est autorisé.
-Étape 5. Enregistrer et demander à l’utilisateur de vérifier.""",
-            "it": """Passo 1. Aprire lo stile o il prodotto interessato.
-Passo 2. Andare alla sezione dei colori.
-Passo 3. Verificare che il colore non sia utilizzato in un flusso attivo.
-Passo 4. Eliminare il colore se consentito.
-Passo 5. Salvare e chiedere all’utente di verificare."""
+            "en": """Please send us the link and a screenshot of the color that needs to be deleted.
+
+Once we receive the required information, we will delete it within the day.""",
+            "fr": """Veuillez nous envoyer le lien et une capture d’écran de la couleur qui doit être supprimée.
+
+Une fois les informations nécessaires reçues, nous la supprimerons dans la journée.""",
+            "it": """Inviaci il link e uno screenshot del colore che deve essere eliminato.
+
+Una volta ricevute le informazioni necessarie, lo elimineremo entro la giornata."""
         }
     },
     {
         "id": "businessmap_collection_not_visible",
         "application": "BusinessMap",
-        "tags": ["collection", "not visible", "businessmap", "export", "business export", "collection non visible", "collezione non visibile"],
+        "tags": [
+            "collection", "not visible", "businessmap", "export", "business export",
+            "collection non visible", "collezione non visibile"
+        ],
         "title": {
             "en": "Collection not visible in BusinessMap",
             "fr": "Collection non visible dans BusinessMap",
@@ -298,27 +307,36 @@ Passo 5. Salvare e chiedere all’utente di verificare."""
             "it": "Non vedo la mia collezione in BusinessMap"
         },
         "content": {
-            "en": """Step 1. Check that the Business Export flag is enabled in PLM.
-Step 2. Check whether the collection has been exported.
-Step 3. Verify that the collection belongs to the correct season.
-Step 4. Ask the user to refresh BusinessMap.
-Step 5. If the collection is still not visible, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier que le flag Business Export est activé dans PLM.
-Étape 2. Vérifier que la collection a bien été exportée.
-Étape 3. Vérifier que la collection appartient à la bonne saison.
-Étape 4. Demander à l’utilisateur de rafraîchir BusinessMap.
-Étape 5. Si la collection n’est toujours pas visible, contacter MIS Support.""",
-            "it": """Passo 1. Verificare che il flag Business Export sia attivo in PLM.
-Passo 2. Verificare che la collezione sia stata esportata.
-Passo 3. Verificare che la collezione appartenga alla stagione corretta.
-Passo 4. Chiedere all’utente di aggiornare BusinessMap.
-Passo 5. Se la collezione non è ancora visibile, contattare MIS Support."""
+            "en": """Please describe what you cannot find in BusinessMap.
+
+Please also provide:
+- the link to the concerned object, if available;
+- a screenshot showing the issue.
+
+We will investigate your request as soon as possible.""",
+            "fr": """Veuillez décrire ce que vous ne trouvez pas dans BusinessMap.
+
+Merci de fournir également :
+- le lien vers l’objet concerné, si disponible ;
+- une capture d’écran montrant le problème.
+
+Nous analyserons votre demande dans les plus brefs délais.""",
+            "it": """Descrivi cosa non riesci a trovare in BusinessMap.
+
+Fornisci anche:
+- il link all’oggetto interessato, se disponibile;
+- uno screenshot che mostri il problema.
+
+Analizzeremo la tua richiesta nel più breve tempo possibile."""
         }
     },
     {
         "id": "businessmap_style_not_visible",
         "application": "BusinessMap",
-        "tags": ["style", "not visible", "businessmap", "export", "style non visible", "stile non visibile"],
+        "tags": [
+            "style", "not visible", "businessmap", "export",
+            "style non visible", "stile non visibile"
+        ],
         "title": {
             "en": "Style not visible in BusinessMap",
             "fr": "Style non visible dans BusinessMap",
@@ -330,27 +348,36 @@ Passo 5. Se la collezione non è ancora visibile, contattare MIS Support."""
             "it": "Non vedo il mio stile in BusinessMap"
         },
         "content": {
-            "en": """Step 1. Check whether the style exists in PLM.
-Step 2. Verify that the style is included in the correct collection.
-Step 3. Check if the Business Export flag is enabled.
-Step 4. Check whether the style has been exported.
-Step 5. If the issue persists, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier que le style existe dans PLM.
-Étape 2. Vérifier que le style est inclus dans la bonne collection.
-Étape 3. Vérifier que le flag Business Export est activé.
-Étape 4. Vérifier que le style a bien été exporté.
-Étape 5. Si le problème persiste, contacter MIS Support.""",
-            "it": """Passo 1. Verificare che lo stile esista in PLM.
-Passo 2. Verificare che lo stile sia incluso nella collezione corretta.
-Passo 3. Verificare che il flag Business Export sia attivo.
-Passo 4. Verificare che lo stile sia stato esportato.
-Passo 5. Se il problema persiste, contattare MIS Support."""
+            "en": """Please describe what you cannot find in BusinessMap.
+
+Please also provide:
+- the link to the concerned object, if available;
+- a screenshot showing the issue.
+
+We will investigate your request as soon as possible.""",
+            "fr": """Veuillez décrire ce que vous ne trouvez pas dans BusinessMap.
+
+Merci de fournir également :
+- le lien vers l’objet concerné, si disponible ;
+- une capture d’écran montrant le problème.
+
+Nous analyserons votre demande dans les plus brefs délais.""",
+            "it": """Descrivi cosa non riesci a trovare in BusinessMap.
+
+Fornisci anche:
+- il link all’oggetto interessato, se disponibile;
+- uno screenshot che mostri il problema.
+
+Analizzeremo la tua richiesta nel più breve tempo possibile."""
         }
     },
     {
         "id": "businessmap_export_issue",
         "application": "BusinessMap",
-        "tags": ["export", "businessmap", "business export", "issue", "problème export", "problema export"],
+        "tags": [
+            "export", "businessmap", "business export", "issue",
+            "problème export", "problema export"
+        ],
         "title": {
             "en": "BusinessMap Export Issue",
             "fr": "Problème d’export vers BusinessMap",
@@ -362,213 +389,138 @@ Passo 5. Se il problema persiste, contattare MIS Support."""
             "it": "Ho un problema di export verso BusinessMap"
         },
         "content": {
-            "en": """Step 1. Check whether the object is eligible for BusinessMap export.
-Step 2. Verify the Business Export flag.
-Step 3. Check mandatory fields in PLM.
-Step 4. Ask the user to provide the object link and a screenshot.
-Step 5. If the export still fails, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier que l’objet est éligible à l’export vers BusinessMap.
-Étape 2. Vérifier le flag Business Export.
-Étape 3. Vérifier les champs obligatoires dans PLM.
-Étape 4. Demander à l’utilisateur de fournir le lien de l’objet et une capture d’écran.
-Étape 5. Si l’export échoue toujours, contacter MIS Support.""",
-            "it": """Passo 1. Verificare che l’oggetto sia idoneo all’export verso BusinessMap.
-Passo 2. Verificare il flag Business Export.
-Passo 3. Verificare i campi obbligatori in PLM.
-Passo 4. Chiedere all’utente di fornire il link dell’oggetto e uno screenshot.
-Passo 5. Se l’export continua a fallire, contattare MIS Support."""
+            "en": """Please describe what you cannot find or export in BusinessMap.
+
+Please also provide:
+- the link to the concerned object, if available;
+- a screenshot showing the issue.
+
+We will investigate your request as soon as possible.""",
+            "fr": """Veuillez décrire ce que vous ne trouvez pas ou ne parvenez pas à exporter dans BusinessMap.
+
+Merci de fournir également :
+- le lien vers l’objet concerné, si disponible ;
+- une capture d’écran montrant le problème.
+
+Nous analyserons votre demande dans les plus brefs délais.""",
+            "it": """Descrivi cosa non riesci a trovare o esportare in BusinessMap.
+
+Fornisci anche:
+- il link all’oggetto interessato, se disponibile;
+- uno screenshot che mostri il problema.
+
+Analizzeremo la tua richiesta nel più breve tempo possibile."""
         }
     },
     {
         "id": "balchain_access",
         "application": "BalChain",
-        "tags": ["balchain", "access", "login", "blank screen", "account", "connexion", "accès", "accesso", "schermata bianca"],
+        "tags": [
+            "balchain", "access", "login", "blank screen", "account", "supplier",
+            "connexion", "accès", "fournisseur", "accesso", "schermata bianca", "fornitore"
+        ],
         "title": {
-            "en": "BalChain Access Issue",
-            "fr": "Problème d’accès à BalChain",
-            "it": "Problema di accesso a BalChain"
+            "en": "BalChain Login or Access Issue",
+            "fr": "Problème de connexion ou d’accès à BalChain",
+            "it": "Problema di login o accesso a BalChain"
         },
         "quick_topic": {
-            "en": "The user cannot log in to BalChain",
-            "fr": "L’utilisateur ne peut pas se connecter à BalChain",
-            "it": "L’utente non riesce ad accedere a BalChain"
+            "en": "The user or supplier cannot log in to BalChain",
+            "fr": "L’utilisateur ou le fournisseur ne peut pas se connecter à BalChain",
+            "it": "L’utente o il fornitore non riesce ad accedere a BalChain"
         },
         "content": {
-            "en": """Step 1. Check whether the user already has a BalChain account.
-Step 2. Ask the user to clear browser cache.
-Step 3. Ask the user to try another browser.
-Step 4. Check whether the user is using the correct link.
-Step 5. If the issue persists, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier que l’utilisateur dispose déjà d’un compte BalChain.
-Étape 2. Demander à l’utilisateur de vider le cache du navigateur.
-Étape 3. Demander à l’utilisateur d’essayer avec un autre navigateur.
-Étape 4. Vérifier que l’utilisateur utilise le bon lien.
-Étape 5. Si le problème persiste, contacter MIS Support.""",
-            "it": """Passo 1. Verificare che l’utente abbia già un account BalChain.
-Passo 2. Chiedere all’utente di cancellare la cache del browser.
-Passo 3. Chiedere all’utente di provare con un altro browser.
-Passo 4. Verificare che l’utente stia usando il link corretto.
-Passo 5. Se il problema persiste, contattare MIS Support."""
+            "en": """Please first check the following points:
+
+Step 1. Make sure that a BalChain account already exists for the user or supplier.
+Step 2. Clear the browser cache and try again.
+Step 3. Try using another browser.
+Step 4. If the issue concerns a supplier, make sure the supplier clicks the BalChain button, not the Balenciaga button.
+Step 5. If the issue persists, please contact MIS Support through this form and provide a link and/or screenshot.""",
+            "fr": """Veuillez d’abord vérifier les points suivants :
+
+Étape 1. Assurez-vous qu’un compte BalChain existe déjà pour l’utilisateur ou le fournisseur.
+Étape 2. Videz le cache du navigateur et réessayez.
+Étape 3. Essayez avec un autre navigateur.
+Étape 4. Si le problème concerne un fournisseur, assurez-vous qu’il clique sur le bouton BalChain, et non sur le bouton Balenciaga.
+Étape 5. Si le problème persiste, veuillez contacter MIS Support via ce formulaire et fournir un lien et/ou une capture d’écran.""",
+            "it": """Verifica prima i seguenti punti:
+
+Passo 1. Assicurati che esista già un account BalChain per l’utente o il fornitore.
+Passo 2. Cancella la cache del browser e riprova.
+Passo 3. Prova a utilizzare un altro browser.
+Passo 4. Se il problema riguarda un fornitore, assicurati che clicchi sul pulsante BalChain e non sul pulsante Balenciaga.
+Passo 5. Se il problema persiste, contatta MIS Support tramite questo modulo e fornisci un link e/o uno screenshot."""
         }
     },
     {
-        "id": "balchain_blank_screen",
-        "application": "BalChain",
-        "tags": ["blank screen", "white screen", "balchain", "login", "access", "écran blanc", "schermata bianca"],
-        "title": {
-            "en": "Blank Screen in BalChain",
-            "fr": "Écran blanc dans BalChain",
-            "it": "Schermata bianca in BalChain"
-        },
-        "quick_topic": {
-            "en": "The user sees a blank screen in BalChain",
-            "fr": "L’utilisateur voit un écran blanc dans BalChain",
-            "it": "L’utente vede una schermata bianca in BalChain"
-        },
-        "content": {
-            "en": """Step 1. Ask the user to clear browser cache.
-Step 2. Ask the user to try another browser.
-Step 3. Check whether the issue happens only on the user's device.
-Step 4. Ask the user to provide a screenshot.
-Step 5. If the issue persists, contact MIS Support.""",
-            "fr": """Étape 1. Demander à l’utilisateur de vider le cache du navigateur.
-Étape 2. Demander à l’utilisateur d’essayer avec un autre navigateur.
-Étape 3. Vérifier si le problème se produit uniquement sur le poste de l’utilisateur.
-Étape 4. Demander à l’utilisateur de fournir une capture d’écran.
-Étape 5. Si le problème persiste, contacter MIS Support.""",
-            "it": """Passo 1. Chiedere all’utente di cancellare la cache del browser.
-Passo 2. Chiedere all’utente di provare con un altro browser.
-Passo 3. Verificare se il problema si verifica solo sul dispositivo dell’utente.
-Passo 4. Chiedere all’utente di fornire uno screenshot.
-Passo 5. Se il problema persiste, contattare MIS Support."""
-        }
-    },
-    {
-        "id": "stealth_export_issue",
+        "id": "stealth_style_export",
         "application": "Stealth",
-        "tags": ["stealth", "export", "style", "not exported", "error", "style non exporté", "stile non esportato"],
+        "tags": [
+            "stealth", "export", "style", "not exported", "cannot export style",
+            "style non exporté", "stile non esportato"
+        ],
         "title": {
-            "en": "Style not exported to Stealth",
-            "fr": "Style non exporté vers Stealth",
-            "it": "Stile non esportato verso Stealth"
+            "en": "Cannot export a style to Stealth",
+            "fr": "Impossible d’exporter un style vers Stealth",
+            "it": "Impossibile esportare uno stile verso Stealth"
         },
         "quick_topic": {
-            "en": "The style was not exported to Stealth",
-            "fr": "Le style n’a pas été exporté vers Stealth",
-            "it": "Lo stile non è stato esportato verso Stealth"
+            "en": "I cannot export a style to Stealth",
+            "fr": "Je ne peux pas exporter un style vers Stealth",
+            "it": "Non riesco a esportare uno stile verso Stealth"
         },
         "content": {
-            "en": """Step 1. Check whether the style has the required export flag.
-Step 2. Verify that all mandatory fields are completed.
-Step 3. Check the export error message.
-Step 4. Compare with a similar successfully exported style if needed.
-Step 5. If the issue persists, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier que le style possède le flag d’export requis.
-Étape 2. Vérifier que tous les champs obligatoires sont renseignés.
-Étape 3. Vérifier le message d’erreur d’export.
-Étape 4. Comparer avec un style similaire exporté avec succès si nécessaire.
-Étape 5. Si le problème persiste, contacter MIS Support.""",
-            "it": """Passo 1. Verificare che lo stile abbia il flag di export richiesto.
-Passo 2. Verificare che tutti i campi obbligatori siano compilati.
-Passo 3. Controllare il messaggio di errore dell’export.
-Passo 4. Confrontare con uno stile simile esportato correttamente, se necessario.
-Passo 5. Se il problema persiste, contattare MIS Support."""
+            "en": """Please provide:
+- the link to the concerned style;
+- a screenshot showing the export issue or error message.
+
+We will investigate your request as soon as possible.""",
+            "fr": """Veuillez fournir :
+- le lien vers le style concerné ;
+- une capture d’écran montrant le problème d’export ou le message d’erreur.
+
+Nous analyserons votre demande dans les plus brefs délais.""",
+            "it": """Fornisci:
+- il link allo stile interessato;
+- uno screenshot che mostri il problema di export o il messaggio di errore.
+
+Analizzeremo la tua richiesta nel più breve tempo possibile."""
         }
     },
     {
-        "id": "stealth_supplier_inactive",
+        "id": "stealth_material_quote_style_code_export",
         "application": "Stealth",
-        "tags": ["supplier", "inactive", "stealth", "vendor", "fournisseur inactif", "fornitore inattivo"],
+        "tags": [
+            "stealth", "export", "material quote", "style code", "cannot export",
+            "material quote export", "style code export"
+        ],
         "title": {
-            "en": "Supplier inactive in Stealth",
-            "fr": "Fournisseur inactif dans Stealth",
-            "it": "Fornitore inattivo in Stealth"
+            "en": "Cannot export a material quote or style code to Stealth",
+            "fr": "Impossible d’exporter un Material Quote ou un Style Code vers Stealth",
+            "it": "Impossibile esportare un Material Quote o uno Style Code verso Stealth"
         },
         "quick_topic": {
-            "en": "The supplier is inactive in Stealth",
-            "fr": "Le fournisseur est inactif dans Stealth",
-            "it": "Il fornitore è inattivo in Stealth"
+            "en": "I cannot export a material quote or style code to Stealth",
+            "fr": "Je ne peux pas exporter un Material Quote ou un Style Code vers Stealth",
+            "it": "Non riesco a esportare un Material Quote o uno Style Code verso Stealth"
         },
         "content": {
-            "en": """Step 1. Check whether the supplier exists in Stealth.
-Step 2. Verify whether the supplier is active or inactive.
-Step 3. If the supplier needs to be reactivated, contact the responsible team.
-Step 4. Ask the user to provide the supplier code and screenshot.
-Step 5. If needed, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier que le fournisseur existe dans Stealth.
-Étape 2. Vérifier si le fournisseur est actif ou inactif.
-Étape 3. Si le fournisseur doit être réactivé, contacter l’équipe responsable.
-Étape 4. Demander à l’utilisateur de fournir le code fournisseur et une capture d’écran.
-Étape 5. Si nécessaire, contacter MIS Support.""",
-            "it": """Passo 1. Verificare che il fornitore esista in Stealth.
-Passo 2. Verificare se il fornitore è attivo o inattivo.
-Passo 3. Se il fornitore deve essere riattivato, contattare il team responsabile.
-Passo 4. Chiedere all’utente di fornire il codice fornitore e uno screenshot.
-Passo 5. Se necessario, contattare MIS Support."""
-        }
-    },
-    {
-        "id": "stealth_currency_missing",
-        "application": "Stealth",
-        "tags": ["currency", "missing currency", "stealth", "error", "devise manquante", "valuta mancante"],
-        "title": {
-            "en": "Missing currency error in Stealth",
-            "fr": "Erreur de devise manquante dans Stealth",
-            "it": "Errore di valuta mancante in Stealth"
-        },
-        "quick_topic": {
-            "en": "There is a missing currency error in Stealth",
-            "fr": "Il y a une erreur de devise manquante dans Stealth",
-            "it": "C’è un errore di valuta mancante in Stealth"
-        },
-        "content": {
-            "en": """Step 1. Check the currency assigned to the supplier or material.
-Step 2. Verify whether the currency is correctly maintained in Stealth.
-Step 3. Check if the same error appears on similar objects.
-Step 4. Ask the user to provide the object link and screenshot.
-Step 5. If the issue persists, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier la devise associée au fournisseur ou au matériel.
-Étape 2. Vérifier que la devise est correctement maintenue dans Stealth.
-Étape 3. Vérifier si la même erreur apparaît sur des objets similaires.
-Étape 4. Demander à l’utilisateur de fournir le lien de l’objet et une capture d’écran.
-Étape 5. Si le problème persiste, contacter MIS Support.""",
-            "it": """Passo 1. Verificare la valuta associata al fornitore o al materiale.
-Passo 2. Verificare che la valuta sia correttamente mantenuta in Stealth.
-Passo 3. Verificare se lo stesso errore appare su oggetti simili.
-Passo 4. Chiedere all’utente di fornire il link dell’oggetto e uno screenshot.
-Passo 5. Se il problema persiste, contattare MIS Support."""
-        }
-    },
-    {
-        "id": "stealth_sap_order_blocked",
-        "application": "Stealth",
-        "tags": ["sap", "order", "blocked", "stealth", "pni", "commande sap bloquée", "ordine sap bloccato"],
-        "title": {
-            "en": "SAP order blocked",
-            "fr": "Commande SAP bloquée",
-            "it": "Ordine SAP bloccato"
-        },
-        "quick_topic": {
-            "en": "The SAP order is blocked",
-            "fr": "La commande SAP est bloquée",
-            "it": "L’ordine SAP è bloccato"
-        },
-        "content": {
-            "en": """Step 1. Check whether the order exists in Stealth.
-Step 2. Verify the associated request code.
-Step 3. Check whether an SAP order number exists.
-Step 4. Ask the user to provide the request code, object link, and screenshot.
-Step 5. If the SAP order is blocked, contact MIS Support.""",
-            "fr": """Étape 1. Vérifier que la commande existe dans Stealth.
-Étape 2. Vérifier le request code associé.
-Étape 3. Vérifier qu’un numéro de commande SAP existe.
-Étape 4. Demander à l’utilisateur de fournir le request code, le lien de l’objet et une capture d’écran.
-Étape 5. Si la commande SAP est bloquée, contacter MIS Support.""",
-            "it": """Passo 1. Verificare che l’ordine esista in Stealth.
-Passo 2. Verificare il request code associato.
-Passo 3. Verificare che esista un numero d’ordine SAP.
-Passo 4. Chiedere all’utente di fornire il request code, il link dell’oggetto e uno screenshot.
-Passo 5. Se l’ordine SAP è bloccato, contattare MIS Support."""
+            "en": """Please provide:
+- the link to the concerned material quote or style code;
+- a screenshot showing the export issue or error message.
+
+We will investigate your request as soon as possible.""",
+            "fr": """Veuillez fournir :
+- le lien vers le Material Quote ou le Style Code concerné ;
+- une capture d’écran montrant le problème d’export ou le message d’erreur.
+
+Nous analyserons votre demande dans les plus brefs délais.""",
+            "it": """Fornisci:
+- il link al Material Quote o allo Style Code interessato;
+- uno screenshot che mostri il problema di export o il messaggio di errore.
+
+Analizzeremo la tua richiesta nel più breve tempo possibile."""
         }
     }
 ]
@@ -583,8 +535,6 @@ def initialize_session_state():
         st.session_state.issue = ""
     if "link" not in st.session_state:
         st.session_state.link = ""
-    if "screenshot_ready" not in st.session_state:
-        st.session_state.screenshot_ready = False
 
 
 def set_issue_from_topic(topic: str):
@@ -594,7 +544,6 @@ def set_issue_from_topic(topic: str):
 def reset_form():
     st.session_state.issue = ""
     st.session_state.link = ""
-    st.session_state.screenshot_ready = False
 
 
 def find_instruction(question: str, application: str):
@@ -629,7 +578,7 @@ def find_instruction(question: str, application: str):
     return best_item if best_score > 0 else None
 
 
-def build_mailto(language, application, issue, link, instruction):
+def build_mailto(language, application, issue, link, instruction, uploaded_file):
     instruction_title = (
         instruction["title"][language]
         if instruction
@@ -638,7 +587,20 @@ def build_mailto(language, application, issue, link, instruction):
 
     subject = f"MIS Support Request - {application}"
 
+    link_text = link if link.strip() else "No link provided"
+    screenshot_text = (
+        "A screenshot is available and can be attached to the request."
+        if uploaded_file is not None
+        else "No screenshot was uploaded."
+    )
+
     if language == "fr":
+        screenshot_text = (
+            "Une capture d’écran est disponible et peut être ajoutée à la demande."
+            if uploaded_file is not None
+            else "Aucune capture d’écran n’a été ajoutée."
+        )
+
         body = f"""Bonjour,
 
 Je rencontre un problème avec l'application suivante : {application}.
@@ -647,10 +609,10 @@ Problème :
 {issue}
 
 Lien concerné :
-{link}
+{link_text}
 
 Capture d'écran :
-Une capture d'écran est disponible et peut être ajoutée à la demande.
+{screenshot_text}
 
 Instruction proposée par l'assistant :
 {instruction_title}
@@ -659,6 +621,12 @@ Pouvez-vous m'aider, s'il vous plaît ?
 
 Merci d'avance."""
     elif language == "it":
+        screenshot_text = (
+            "Uno screenshot è disponibile e può essere allegato alla richiesta."
+            if uploaded_file is not None
+            else "Nessuno screenshot è stato caricato."
+        )
+
         body = f"""Buongiorno,
 
 Ho un problema con la seguente applicazione: {application}.
@@ -667,10 +635,10 @@ Problema:
 {issue}
 
 Link interessato:
-{link}
+{link_text}
 
 Screenshot:
-Uno screenshot è disponibile e può essere allegato alla richiesta.
+{screenshot_text}
 
 Istruzione proposta dall'assistente:
 {instruction_title}
@@ -687,10 +655,10 @@ Issue:
 {issue}
 
 Concerned link:
-{link}
+{link_text}
 
 Screenshot:
-A screenshot is available and can be attached to the request.
+{screenshot_text}
 
 Instruction suggested by the assistant:
 {instruction_title}
@@ -785,11 +753,6 @@ link = st.text_input(
     help=texts["link_help"],
 )
 
-screenshot_ready = st.checkbox(
-    texts["screenshot"],
-    key="screenshot_ready",
-)
-
 uploaded_file = st.file_uploader(
     texts["upload"],
     type=["png", "jpg", "jpeg"],
@@ -808,12 +771,8 @@ if submitted:
         st.warning(texts["missing_issue"])
         st.stop()
 
-    if not link.strip():
-        st.warning(texts["missing_link"])
-        st.stop()
-
-    if not screenshot_ready and uploaded_file is None:
-        st.warning(texts["missing_screenshot"])
+    if not link.strip() and uploaded_file is None:
+        st.warning(texts["missing_link_or_screenshot"])
         st.stop()
 
     instruction = find_instruction(issue, application)
@@ -828,7 +787,16 @@ if submitted:
     else:
         st.warning(texts["no_match"])
 
-    st.markdown(f"**{texts['provided_link']}:** {link}")
+    if link.strip():
+        st.markdown(f"**{texts['provided_link']}:** {link}")
+    else:
+        st.markdown(f"**{texts['provided_link']}:** {texts['no_link']}")
+
+    if uploaded_file is not None:
+        st.info(texts["screenshot_uploaded"])
+    else:
+        st.info(texts["screenshot_not_uploaded"])
+
     st.info(texts["screenshot_note"])
     st.markdown(f"**{texts['helpful']}**")
     st.write(texts["support_note"])
@@ -839,6 +807,7 @@ if submitted:
         issue=issue,
         link=link,
         instruction=instruction,
+        uploaded_file=uploaded_file,
     )
 
     render_mailto_button(mailto_link, texts["contact"])
@@ -854,4 +823,9 @@ if submitted:
         st.write(f"Subject: MIS Support Request - {application}")
         st.write("Instruction:", instruction_title)
         st.write("Issue:", issue)
-        st.write("Link:", link)
+        st.write("Link:", link if link.strip() else texts["no_link"])
+
+        if uploaded_file is not None:
+            st.write("Screenshot:", uploaded_file.name)
+        else:
+            st.write("Screenshot:", texts["screenshot_not_uploaded"])
