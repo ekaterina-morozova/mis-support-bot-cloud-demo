@@ -2,21 +2,11 @@ import streamlit as st
 import urllib.parse
 import re
 
-
-# ============================================================
-# PAGE CONFIG
-# ============================================================
-
 st.set_page_config(
     page_title="MIS Support Assistant",
     page_icon="💬",
     layout="centered"
 )
-
-
-# ============================================================
-# BASIC CONFIG
-# ============================================================
 
 SUPPORT_EMAIL = "itbo@balenciaga.com"
 
@@ -27,11 +17,6 @@ LANGUAGE_OPTIONS = {
 }
 
 APPLICATIONS = ["PLM", "BalChain", "BusinessMap", "Stealth"]
-
-
-# ============================================================
-# UI TEXTS
-# ============================================================
 
 UI_TEXTS = {
     "en": {
@@ -572,11 +557,6 @@ Analizzeremo la tua richiesta nel più breve tempo possibile."""
     }
 ]
 
-
-# ============================================================
-# HELPERS
-# ============================================================
-
 def initialize_session_state():
     if "issue" not in st.session_state:
         st.session_state.issue = ""
@@ -823,11 +803,6 @@ def render_mailto_button(mailto_link: str, label: str):
         """,
         unsafe_allow_html=True,
     )
-
-
-# ============================================================
-# APP
-# ============================================================
 
 initialize_session_state()
 
